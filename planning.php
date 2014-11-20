@@ -25,6 +25,7 @@ class planning {
         $this->tab = array(array());
         
         
+        
     }
     
     public function getJour() {
@@ -35,19 +36,20 @@ class planning {
     public function affcherPlanning(){
         
         //remplissage du tableau avec les bonnes infos
-//        for ($j=1 ; $j<=7 ; $j++){
-//            $jourSemaine = strftime("%A - %d/%m/%Y",  mktime(0, 0, 0, date('m'), date('d')-date('N')+($j), date('Y'))) ;
-//            $this->tab[1][$j] = $jourSemaine ;
-//        }
-//        
-//
-//        
-//        for ($i=1 ; $j<=14 ; $i++){
-//            $letest = $i.":00 - " . ($i+1) . ":00" ;
-//            //$this->tab[$i][1] = $i.":00 - " . ($i+1) . ":00";
-//        }
+         for ($j=1 ; $j<=6 ; $j++){
+            $jourSemaine = strftime("%A - %d/%m/%Y",  mktime(0, 0, 0, date('m'), date('d')-date('N')+($j), date('Y'))) ;
+            $this->tab[1][$j] = $jourSemaine ;
+            echo $jourSemaine ;
+         }
         
 
+        
+        for ($i=1 ; $i<=13 ; $i++){
+        $this->tab[$i][1] = $i.":00 - " . ($i+1) . ":00" ;
+            $this->tab[$i][1] = 0 ;
+        }
+        
+        echo 'prout' ;
         
         
         //affichage v2
