@@ -7,6 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css" type="text/css" />
         <title></title>
     </head>
     <body>
@@ -37,15 +38,39 @@ and open the template in the editor.
 //        }
 //        echo '</table>';
         
-        
         $test = new planning();
-        //$lol = $test->getJour();
-        echo "$lol";
         
-        $test->affcherPlanning();
+        if(isset($_GET["x"]))
+        {
+            $dateDebut = $_GET["d"] ;
+            $x = $_GET["x"] ;
+            if ($x == -1){
+                $dateDebut = $test->afficherPlanning2($x , $dateDebut);
+            }
+            else {
+                if ($x == 1){
+                    $dateDebut = $test->afficherPlanning2($x , $dateDebut);
+                }
+                else {
+                   $dateDebut = $test->afficherPlanning();
+                }
+            }
+        }
+        else {
+            $dateDebut = $test->afficherPlanning();
+        }
+        
+        
+        
+        echo "<p><a href='test.php?x=1&d=$dateDebut'> semaine suivante </a></p>";
+        echo "<p><a href='test.php?x=-1&d=$dateDebut'> semaine precedente </a></p>";
+        
         
         
         
         ?>
+        
+        
+        
     </body>
 </html>
