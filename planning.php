@@ -39,7 +39,7 @@ class planning {
         //$debut = date('d')-date('N');
         //$debut2 = generation($debut);
         
-        return $debut2;
+        //return $debut2;
         
         echo '<table>';
         for ($i=0 ; $i<=13 ; $i++){
