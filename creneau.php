@@ -13,9 +13,11 @@
  */
 class creneau {
     
-    private $date ;
+    private $jour;
+    private $horaireDebut;
+    private $rdv;
     
-    function creneau() {
+    function creneau($jour , $horairedebut , $rdv) {
         
     }
     

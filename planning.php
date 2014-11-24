@@ -14,13 +14,13 @@ class planning {
     private $jour ;
     private $listeCreneau ;
     private $semaine ;
-    private $dateTime ;
+    //private $dateTime ;
     private $timestamp ;
     private $tab ;
     
     public function planning () {
-        $this->dateTime = new DateTime() ;
-        $this->timestamp = $this->dateTime->getTimestamp();
+        //$this->dateTime = new DateTime() ;
+        //$this->timestamp = $this->dateTime->getTimestamp();
         $this->jour = strftime("%A - %d/%m/%Y",  mktime(0, 0, 0, date('m'), date('d')-date('N')+1, date('Y')));
         $this->tab = array(array());
         
@@ -36,43 +36,44 @@ class planning {
     public function afficherPlanning(){
         
         //remplissage du tableau avec les bonnes infos
-        //$debut = date('d')-date('N');
-        //$debut2 = generation($debut);
+        $debut = date('d')-date('N');
+        $this->generation($debut);
         
-        //return $debut2;
+        return $debut;
         
-        echo '<table>';
-        for ($i=0 ; $i<=13 ; $i++){
-            echo '<tr>';
-            for ($j=0 ; $j<=6 ; $j++){
-                if ($i==0 and $j==0)
-                {
-                    echo '<td>CaseVide</td>';
-                }
-                else {
-                    if ($i == 0 and $j >= 1)
-                    {
-                        $jourSemaine = strftime("%A - %d/%m/%Y",  mktime(0, 0, 0, date('m'), date('d')-date('N')+($j), date('Y'))) ;
-                        $this->tab[$i][$j] = $jourSemaine ;
-                        echo "<td>".$this->tab[$i][$j]."</td>";
-                    }
-                    else {
-                        if ($j == 0 and $i >=1)
-                        {
-                            $this->tab[$i][$j] = ($i+6).":00 - " . ($i+7) . ":00" ;
-                            echo "<td>".$this->tab[$i][$j]."</td>";
-                        }
-                        else {
-                           echo '<td>casevide</td>';
-                        }
-                    }
-                }
-            }
-        }
-        
-        echo '</table>';
-                
-        return date('d')-date('N');
+//        echo '<table>';
+//        for ($i=0 ; $i<=13 ; $i++){
+//            echo '<tr>';
+//            for ($j=0 ; $j<=6 ; $j++){
+//                if ($i==0 and $j==0)
+//                {
+//                    echo '<td>CaseVide</td>';
+//                }
+//                else {
+//                    if ($i == 0 and $j >= 1)
+//                    {
+//                        $jourSemaine = strftime("%A - %d/%m/%Y",  mktime(0, 0, 0, date('m'), date('d')-date('N')+($j), date('Y'))) ;
+//                        $this->tab[$i][$j] = $jourSemaine ;
+//                        echo "<td>".$this->tab[$i][$j]."</td>";
+//                    }
+//                    else {
+//                        if ($j == 0 and $i >=1)
+//                        {
+//                            $this->tab[$i][$j] = ($i+6).":00 - " . ($i+7) . ":00" ;
+//                            echo "<td>".$this->tab[$i][$j]."</td>";
+//                        }
+//                        else {
+//                           echo '<td onclick="location.href=\'lien.html\'">casevide</td>';
+//                           
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        
+//        echo '</table>';
+//                
+//        return date('d')-date('N');
 
     }
     
@@ -80,70 +81,15 @@ class planning {
         
         if ($x == -1)
         {
-            echo '<table>';
-            for ($i=0 ; $i<=13 ; $i++){
-                echo '<tr>';
-                for ($j=0 ; $j<=6 ; $j++){
-                    if ($i==0 and $j==0)
-                    {
-                        echo '<td>CaseVide</td>';
-                    }
-                    else {
-                        if ($i == 0 and $j >= 1)
-                        {
-                            $jourSemaine = strftime("%A - %d/%m/%Y",  mktime(0, 0, 0, date('m'), $dateDebut-7+$j, date('Y'))) ;
-                            $this->tab[$i][$j] = $jourSemaine ;
-                            echo "<td>".$this->tab[$i][$j]."</td>";
-                        }
-                        else {
-                            if ($j == 0 and $i >=1)
-                            {
-                                $this->tab[$i][$j] = ($i+6).":00 - " . ($i+7) . ":00" ;
-                                echo "<td>".$this->tab[$i][$j]."</td>";
-                            }
-                            else {
-                               echo '<td>casevide</td>';
-                            }
-                        }
-                    }
-                }
-            }
+            $this->generation($dateDebut-7);
 
-            echo '</table>';
             return $dateDebut-7;
         }
         
         if ($x== 1){
-            echo '<table>';
-            for ($i=0 ; $i<=13 ; $i++){
-                echo '<tr>';
-                for ($j=0 ; $j<=6 ; $j++){
-                    if ($i==0 and $j==0)
-                    {
-                        echo '<td>CaseVide</td>';
-                    }
-                    else {
-                        if ($i == 0 and $j >= 1)
-                        {
-                            $jourSemaine = strftime("%A - %d/%m/%Y",  mktime(0, 0, 0, date('m'), $dateDebut+7+$j, date('Y'))) ;
-                            $this->tab[$i][$j] = $jourSemaine ;
-                            echo "<td>".$this->tab[$i][$j]."</td>";
-                        }
-                        else {
-                            if ($j == 0 and $i >=1)
-                            {
-                                $this->tab[$i][$j] = ($i+6).":00 - " . ($i+7) . ":00" ;
-                                echo "<td>".$this->tab[$i][$j]."</td>";
-                            }
-                            else {
-                               echo '<td>casevide</td>';
-                            }
-                        }
-                    }
-                }
-            }
-
-            echo '</table>';
+            
+            $this->generation($dateDebut+7);
+            
             return $dateDebut+7;
         }
         
@@ -172,7 +118,7 @@ class planning {
                             echo "<td>".$this->tab[$i][$j]."</td>";
                         }
                         else {
-                           echo '<td>casevide</td>';
+                           echo '<td onclick="location.href=\'lien.html\'">casevide</td>';
                         }
                     }
                 }
@@ -183,4 +129,6 @@ class planning {
                 
         return $dateDebut;
     }
+    
+    
 }

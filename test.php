@@ -39,7 +39,7 @@ and open the template in the editor.
 //        echo '</table>';
         
         $test = new planning();
-        
+        // faire la verif de contrainte sur la date et x
         if(isset($_GET["x"]))
         {
             $dateDebut = $_GET["d"] ;
@@ -64,11 +64,21 @@ and open the template in the editor.
         
         echo "<p><a href='test.php?x=1&d=$dateDebut'> semaine suivante </a></p>";
         echo "<p><a href='test.php?x=-1&d=$dateDebut'> semaine precedente </a></p>";
-        
-        
-        
-        
         ?>
+        
+<!--        <form id="suivante" action="test.php" method="post">
+        <input type="hidden" name="x" value=1/>
+        <input type="hidden" name="d" value=<?php $dateDebut ?>>
+        </form>
+        <a href='test.php' onclick='document.getElementById("suivante").submit()'>lien suivant</a>
+        
+        <form id="prec" action="test.php" method="post">
+        <input type="hidden" name="x" value=-1/>
+        <input type="hidden" name="d" value=<?php $dateDebut ?>>
+        </form>
+        <a href='test.php' onclick='document.getElementById("prec").submit()'>lien prec</a>-->
+        
+        
         
         
         
