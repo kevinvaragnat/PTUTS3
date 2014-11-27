@@ -17,6 +17,7 @@ and open the template in the editor.
         
         <?php
         include ("planning.php") ;
+        //include (creneau.php);
         
 //        $test = date ( "w"  );
 //        echo '<table>';
@@ -64,6 +65,11 @@ and open the template in the editor.
         
         echo "<p><a href='test.php?x=1&d=$dateDebut'> semaine suivante </a></p>";
         echo "<p><a href='test.php?x=-1&d=$dateDebut'> semaine precedente </a></p>";
+        echo "<p><a href='test.php'> now </a></p>";
+        //test créneau
+        
+        //$creneauTest = new creneau("78", 42);
+        //echo $creneauTest->getJour();
         ?>
         
 <!--        <form id="suivante" action="test.php" method="post">
