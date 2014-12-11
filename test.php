@@ -43,28 +43,28 @@ and open the template in the editor.
         // faire la verif de contrainte sur la date et x
         if(isset($_GET["x"]))
         {
-            $dateDebut = $_GET["d"] ;
+            $semaine = $_GET["d"] ;
             $x = $_GET["x"] ;
             if ($x == -1){
-                $dateDebut = $test->afficherPlanning2($x , $dateDebut);
+                $semaine = $test->afficherPlanning2($x , $semaine);
             }
             else {
                 if ($x == 1){
-                    $dateDebut = $test->afficherPlanning2($x , $dateDebut);
+                    $semaine = $test->afficherPlanning2($x , $semaine);
                 }
                 else {
-                   $dateDebut = $test->afficherPlanning();
+                   $semaine = $test->afficherPlanning();
                 }
             }
         }
         else {
-            $dateDebut = $test->afficherPlanning();
+            $semaine = $test->afficherPlanning();
         }
         
         
         
-        echo "<p><a href='test.php?x=1&d=$dateDebut'> semaine suivante </a></p>";
-        echo "<p><a href='test.php?x=-1&d=$dateDebut'> semaine precedente </a></p>";
+        echo "<p><a href='test.php?x=1&d=$semaine'> semaine suivante </a></p>";
+        echo "<p><a href='test.php?x=-1&d=$semaine'> semaine precedente </a></p>";
         echo "<p><a href='test.php'> now </a></p>";
         //test créneau
         
@@ -74,13 +74,13 @@ and open the template in the editor.
         
 <!--        <form id="suivante" action="test.php" method="post">
         <input type="hidden" name="x" value=1/>
-        <input type="hidden" name="d" value=<?php $dateDebut ?>>
+        <input type="hidden" name="d" value=<?php $semaine ?>>
         </form>
         <a href='test.php' onclick='document.getElementById("suivante").submit()'>lien suivant</a>
         
         <form id="prec" action="test.php" method="post">
         <input type="hidden" name="x" value=-1/>
-        <input type="hidden" name="d" value=<?php $dateDebut ?>>
+        <input type="hidden" name="d" value=<?php $semaine ?>>
         </form>
         <a href='test.php' onclick='document.getElementById("prec").submit()'>lien prec</a>-->
         

@@ -11,17 +11,11 @@ setlocale(LC_ALL, 'fr_FR');
 
 class planning {
     
-//    private $jour ;
-//    private $semaine ;
-    //private $dateTime ;
-//    private $timestamp ;
     private $tab ;
     private $listeCreneau ;
     
     public function planning () {
-        //$this->dateTime = new DateTime() ;
-        //$this->timestamp = $this->dateTime->getTimestamp();
-        //$this->jour = strftime("%A - %d/%m/%Y",  mktime(0, 0, 0, date('m'), date('d')-date('N')+1, date('Y')));
+
         $this->tab = array(array());
         $this->listeCreneau = array();
         
@@ -36,36 +30,34 @@ class planning {
     
     public function afficherPlanning(){
         
-        //remplissage du tableau avec les bonnes infos
-        $debut = date('d')-date('N');
-        $this->generation($debut);
+        $this->generation(0);
         
-        
-        return $debut;
+        return 0;
         
 
 
     }
     
-    public function afficherPlanning2($x , $dateDebut){
+    public function afficherPlanning2($x , $semaineDebut){
         
         if ($x == -1)
         {
-            $this->generation($dateDebut-7);
+            $this->generation($semaineDebut-1);
 
-            return $dateDebut-7;
+            return ($semaineDebut-1);
         }
         
         if ($x== 1){
             
-            $this->generation($dateDebut+7);
+            $this->generation($semaineDebut+1);
             
-            return $dateDebut+7;
+            return $semaineDebut+1;
         }
         
     }
     
-    private function generation($dateDebut){
+    private function generation($semaineDebut){
+        $jourDebut = $semaineDebut*7;
         echo '<table>';
         for ($i=0 ; $i<=13 ; $i++){
             echo '<tr>';
@@ -77,7 +69,7 @@ class planning {
                 else {
                     if ($i == 0 and $j >= 1)
                     {
-                        $jourSemaine = strftime("%A - %d/%m/%Y",  mktime(0, 0, 0, date('m'), $dateDebut+($j), date('Y'))) ;
+                        $jourSemaine = strftime("%A - %d/%m/%Y",  mktime(0, 0, 0, date('m'), (date('d')-date('N'))+$jourDebut+($j), date('Y'))) ;
                         $this->tab[$i][$j] = $jourSemaine ;
                         echo "<td>".$this->tab[$i][$j]."</td>";
                     }
@@ -90,15 +82,16 @@ class planning {
                         else {
                            //echo '<td onclick="location.href=\'lien.html\'">casevide</td>';
                             
-                            $currentCreneau = new creneau(strftime("%d-%m-%Y",  mktime(0, 0, 0, date('m'), $dateDebut+($j), date('Y'))), $i+6) ;
+                            $currentCreneau = new creneau(strftime("%d-%m-%Y",  mktime(0, 0, 0, date('m'), (date('d')-date('N'))+$jourDebut+($j), date('Y'))), $i+6) ;
                             $this->listeCreneau[] = $currentCreneau;
                             if ($currentCreneau->estLibre()){
-                                echo "<td>Libre</td>";
+                                //echo "<td>Libre</td>";
+                                //echo '<td onclick="location.href=\'lien.html\'">libre</td>';
                             }
                             else {
-                                
+                                echo "<td>Non Libre</td>";
                             }
-                            echo "<td>Non Libre</td>";
+                            
                             
                         }
                     }
@@ -107,8 +100,9 @@ class planning {
         }
         
         echo '</table>';
+        
                 
-        return $dateDebut;
+       
     }
     
     

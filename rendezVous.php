@@ -12,7 +12,26 @@
  * @author Kevin
  */
 class rendezVous {
-    private $jour ;
+    private $date ;
     private $heure ;
-    private $semaine ; 
+
+    public function rendezVous($date , $heure){
+        $this->date = $date;
+        $this->heure = $heure;   
+        
+    }
+    
+    
+    public function ajoutRDVBase() {
+        
+        
+        require '../admin/bin/params.php';
+        mysql_connect($host,$user,$password) or die('Erreur de connexion au SGBD.');
+        mysql_select_db($base) or die('La base de données n\'existe pas');
+        
+        $sql = "insert into RDV(jour , heure) values( $this->date , $this->heure) ";
+        $req = mysql_query($sql) ;
+        mysql_close();
+    }
+    
 }

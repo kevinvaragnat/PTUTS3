@@ -26,13 +26,17 @@ class creneau {
         return $this->jour ;
     }
     
+    public function getHorraire(){
+        return $this->horaireDebut;
+    }
+    
     public function estLibre() {
         
         require '../admin/bin/params.php';
         mysql_connect($host,$user,$password) or die('Erreur de connexion au SGBD.');
         mysql_select_db($base) or die('La base de données n\'existe pas');
         
-        $sql = "SELECT COUNT(NUMRDV) as nb FROM rendezVous where $jour = date and $horaireDebut = heure";
+        $sql = "SELECT COUNT(NUMRDV) as nb FROM RDV where $jour = date and $horaireDebut = heure";
         $req = mysql_query($sql) ;
         $row = mysql_fetch_assoc($req);
         $nombre = $row['nb'];
@@ -45,11 +49,18 @@ class creneau {
                 return true;
         }
         //else
-
+        
 
         return false;
         
         // return true or false
+    }
+    
+    public function ajoutRDV($date ,$heure){
+        
+        $RDV = new rendezVous($date , $heure);
+        $RDV->ajoutRDVBase();
+        
     }
     
 }
