@@ -82,10 +82,10 @@ class planning {
                         else {
                            //echo '<td onclick="location.href=\'lien.html\'">casevide</td>';
                             
-                            $currentCreneau = new creneau(strftime("%d-%m-%Y",  mktime(0, 0, 0, date('m'), (date('d')-date('N'))+$jourDebut+($j), date('Y'))), $i+6) ;
-                            $this->listeCreneau[] = $currentCreneau;
+                            $currentCreneau = new creneau(strftime("%Y-%m-%d",mktime(0, 0, 0, date('m'), (date('d')-date('N'))+$jourDebut+($j), date('Y'))), $i+6) ;
+                            //$this->listeCreneau[] = $currentCreneau;
                             if ($currentCreneau->estLibre()){
-                                //echo "<td>Libre</td>";
+                                echo "<td><a href=nouveauRDV.php?j=".$currentCreneau->getJour()."&h=".$currentCreneau->getHorraire().">Prendre Rendez-Vous</a></td>";
                                 //echo '<td onclick="location.href=\'lien.html\'">libre</td>';
                             }
                             else {

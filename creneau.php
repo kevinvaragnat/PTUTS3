@@ -56,11 +56,6 @@ class creneau {
         // return true or false
     }
     
-    public function ajoutRDV($date ,$heure){
-        
-        $RDV = new rendezVous($date , $heure);
-        $RDV->ajoutRDVBase();
-        
-    }
+    
     
 }

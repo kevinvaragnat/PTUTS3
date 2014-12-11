@@ -16,7 +16,7 @@ and open the template in the editor.
        
         
         <?php
-        include ("planning.php") ;
+        require 'planning.php' ;
         //include (creneau.php);
         
 //        $test = date ( "w"  );

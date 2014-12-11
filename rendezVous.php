@@ -1,5 +1,6 @@
 <?php
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,26 +13,29 @@
  * @author Kevin
  */
 class rendezVous {
-    private $date ;
+    private $dateRdv ;
     private $heure ;
 
-    public function rendezVous($date , $heure){
-        $this->date = $date;
+    public function rendezVous($dateRdv , $heure){
+        $this->dateRdv = date('Y-m-d' , strtotime($dateRdv) ) ;
         $this->heure = $heure;   
         
     }
     
     
-    public function ajoutRDVBase() {
+    public function ajoutRDV() {
+        
         
         
         require '../admin/bin/params.php';
         mysql_connect($host,$user,$password) or die('Erreur de connexion au SGBD.');
         mysql_select_db($base) or die('La base de données n\'existe pas');
         
-        $sql = "insert into RDV(jour , heure) values( $this->date , $this->heure) ";
+        $sql = "insert into RDV(jour , heure) values( $this->dateRdv ,  $this->heure)";
         $req = mysql_query($sql) ;
         mysql_close();
     }
     
 }
+
+
